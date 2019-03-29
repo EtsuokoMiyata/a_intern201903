@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  scheduled_end_time: 2019-03-29 21:54:34
+  processing_content: MyString
+  Instructor_confirmation: MyString
+  to_user: 1
+  user: one
+
+two:
+  scheduled_end_time: 2019-03-29 21:54:34
+  processing_content: MyString
+  Instructor_confirmation: MyString
+  to_user: 1
+  user: two
