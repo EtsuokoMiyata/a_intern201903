@@ -107,4 +107,34 @@
       </tr>
     </tfoot>
   </table>
+  <!-- モーダル -->
+    <table class="table-bordered table-striped table-condened">
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th>曜日</th>
+          <th>終了予定時間</th>
+          <th>翌日</th>
+          <th>業務処理内容</th>
+          <th>指示者確認㊞</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% #@dates.each do |day| %>
+          <%= form_for(@overtime) do |f| %>
+            <tr>
+              <td>8/1</td>
+              <td>水</td>
+              <td><%= f.time_field :scheduled_end_time, class: "form-control" %></td>
+              <td><%= f.time_field :processing_content, class: "form-control" %></td>
+              <td><%= f.check_box :Instructor_confirmation, class: "form-control" %></td>
+              <td><%= f.text_field :Instructor_confirmation, class: "form-control" %></td>
+              </td>
+            </tr>
+          <% end %>
+        <% #end %>
+      </tbody>      
+    </table>
+    <%= submit_tag "変更を送信する", class:"btn btn-xs btn-primary" %>
+    <!--　モーダル　-->
 </div>

@@ -13,4 +13,6 @@ Rails.application.routes.draw do
  resources :users do
   resources :attendances, only: :create
  end
+
+ post '/users/:user_id/overtimes', to: 'overtimes#create', as: :overtime
 end
