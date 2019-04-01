@@ -1,6 +1,6 @@
 class OvertimesController < ApplicationController
-def creat
-    
+def create
+    redirect_to user_path
 end
 
 def new

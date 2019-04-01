@@ -1,3 +1,4 @@
+
 <% provide(:title, '勤怠表示') %>
 <div>
   <table class="table-bordered table-condensed">
@@ -65,7 +66,7 @@
     <tbody>
       <% @dates.each do |day| %>
         <tr>
-          <td><%= button_to "残業申請", user_attendances_path(@user), class: "btn btn-xs btn-primary" %></td>
+          <td><button type="button" class="modal-open btn btn-primary">残業申請</button></td>
           <td><%= day.worked_on.to_s(:date) %></td>
           <td><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
           <td><%= day.started_at.to_s(:hour) if day.started_at.present? %></td>
@@ -108,6 +109,7 @@
     </tfoot>
   </table>
   <!-- モーダル -->
+  <div id="modal-content">
     <table class="table-bordered table-striped table-condened">
       <thead>
         <tr>
@@ -136,5 +138,7 @@
       </tbody>      
     </table>
     <%= submit_tag "変更を送信する", class:"btn btn-xs btn-primary" %>
+    <p><a id="modal-close" class="button-link">閉じる</a></p>
+  </div>
     <!--　モーダル　-->
 </div>
