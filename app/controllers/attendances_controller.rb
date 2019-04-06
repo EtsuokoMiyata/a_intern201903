@@ -35,6 +35,10 @@ class AttendancesController < ApplicationController
       redirect_to edit_attendances_path(@user, params[:date])
     end
   end
+
+  def overtime_edit
+   
+  end
   
   
   private

@@ -14,5 +14,8 @@ Rails.application.routes.draw do
   resources :attendances, only: :create
  end
 
- post '/users/:user_id/overtimes', to: 'overtimes#create', as: :overtime
+ #post '/users/:user_id/overtimes', to: 'overtimes#create', as: :overtime
+ #残業申請モーダル用
+ #patch '/users/:id/attendances/:date/overtime_edit', to: 'attendances#overtime_edit', as: :edit_overtimes
+ patch '/users/:id/overtime_edit', to: 'attendances#overtime_edit', as: :edit_overtimes
 end
