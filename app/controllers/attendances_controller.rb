@@ -40,6 +40,7 @@ class AttendancesController < ApplicationController
   def edit_overtime
     @user=User.find(params[:id])
     @overtime = @user.attendances.find_by(worked_on: params[:worked_on])
+    @youbi= params[:youbi]
     #debugger
     respond_to do |format|
       format.html

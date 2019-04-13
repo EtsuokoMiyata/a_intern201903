@@ -1,23 +1,22 @@
 <div class="modal-dialog">
   <div class="modal-content">
-      
   <%= form_for update_overtime_path(@overtime), remote: true do |f| %>
-    <%= f.label :id %>
-    <%= f.text_field :id, value: @overtime.id %>
-
-    <%= f.label :worked_on %>
+    <%= f.label :日付n %>
     <%= f.date_field :worked_on, value: @overtime.worked_on, class: "form-control" %>
 
-    <%= f.label :scheduled_end_time %>
+    <%= f.label :曜日 %>
+    <%= f.text_field :youbi, value: @youbi, class: "form-control" %>
+
+    <%= f.label :終了予定時間 %>
     <%= f.datetime_field :scheduled_end_time, value: @overtime.scheduled_end_time, class: "form-control" %>
 
-    <%= f.label :next_day %>
+    <%= f.label :翌日 %>
     <%= f.check_box :next_day, value: @overtime.next_day, class: "form-control" %>
 
-    <%= f.label :processing_content %>
+    <%= f.label :業務処理内容 %>
     <%= f.text_field :processing_content, value: @overtime.processing_content, class: "form-control" %>
 
-    <%= f.label :instructor_confirm_overtime %>
+    <%= f.label :指示者確認㊞ %>
     <%= f.select :instructor_confirm_overtime, Attendance.instructor_confirm_overtimes.keys.to_a, { include_blank: true }, class: "form-control" %>
   
     <%= f.submit "更新する", class: "btn btn-primary" %>
