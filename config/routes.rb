@@ -10,12 +10,22 @@ Rails.application.routes.draw do
  get 'users/:id/attendances/:date/edit', to: 'attendances#edit', as: :edit_attendances
  patch 'users/:id/attendances/:date/update', to: 'attendances#update', as: :update_attendances
   
- resources :users do
-  resources :attendances, only: :create
- end
+ 
 
  #post '/users/:user_id/overtimes', to: 'overtimes#create', as: :overtime
  #残業申請モーダル用
  #patch '/users/:id/attendances/:date/overtime_edit', to: 'attendances#overtime_edit', as: :edit_overtimes
- patch '/users/:id/overtime_edit', to: 'attendances#overtime_edit', as: :edit_overtimes
+ post '/update_overtime', to: 'attendances#update_overtime'
+ get '/edit_overtime/:id', to: 'attendances#edit_overtime', as: :overtime
+
+
+ resources :users do
+    resources :attendances, only: :create
+  end
+
+
+
+
+
+
 end

@@ -19,7 +19,6 @@ class UsersController < ApplicationController
     end
     @dates=user_attendances_month_date
     @worked_sum=@dates.where.not(started_at: nil).count
-    @overtime=Attendance.find_by(user_id: params[:id])  #残業申請モーダル用
     #debugger
   end
   

@@ -65,8 +65,9 @@
     
     <tbody>
       <% @dates.each do |day| %>
-        <tr>
-          <td><button type="button" class="modal-open btn btn-primary">残業申請</button></td>
+        <tr>          
+          <td><%= button_to "残業申請", overtime_path(@user), remote: true, method: :get, params:{worked_on: day.worked_on}, class:"btn btn-primary" %></td>
+          <div id="attendance-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
           <td><%= day.worked_on.to_s(:date) %></td>
           <td><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
           <td><%= day.started_at.to_s(:hour) if day.started_at.present? %></td>
@@ -108,37 +109,4 @@
       </tr>
     </tfoot>
   </table>
-  <!-- モーダル -->
-  <div id="modal-content">
-    <table class="table-bordered table-striped table-condened">
-      <thead>
-        <tr>
-          <th>日付</th>
-          <th>曜日</th>
-          <th>終了予定時間</th>
-          <th>翌日</th>
-          <th>業務処理内容</th>
-          <th>指示者確認㊞</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% #@dates.each do |day| %>
-          <%= form_for(@overtime, url:edit_overtimes_path) do |f| %>
-            <tr>
-              <td>8/1</td>
-              <td>水</td>
-              <td><%= f.time_field :scheduled_end_time, class: "form-control" %></td>
-              <td><%= f.check_box :next_day, class: "form-control" %></td>
-              <td><%= f.text_field :processing_content, class: "form-control" %></td>              
-              <td><%= f.select :instructor_confirm_overtime, Attendance.instructor_confirm_overtimes.keys.to_a, { include_blank: true }, {class: "form-control"} %></td>
-              </td>
-            </tr>
-          <% end %>
-        <% #end %>
-      </tbody>      
-    </table>
-    <%= submit_tag "変更を送信する", class:"btn btn-xs btn-primary" %>
-    <p><a id="modal-close" class="button-link">閉じる</a></p>
-  </div>
-    <!--　モーダル　-->
 </div>

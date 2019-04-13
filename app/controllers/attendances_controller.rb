@@ -33,11 +33,42 @@ class AttendancesController < ApplicationController
     else
       flash[:danger] = "不正な時間入力がありました。再入力してください。"
       redirect_to edit_attendances_path(@user, params[:date])
+
     end
   end
 
-  def overtime_edit
-   
+  def edit_overtime
+    @user=User.find(params[:id])
+    @overtime = @user.attendances.find_by(worked_on: params[:worked_on])
+    #debugger
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+  
+  
+  
+  
+  def update_overtime
+    #@user=User.find(params[:id])
+    #@attendance = @user.attendances.find_by(worked_on:  params[:worked_on])
+   #@attendance=Attendance.find_by({user_id: params[:id], worked_on: params[:worked_on]}) 
+    #debugger
+    #@user=User.find(params[:id])
+    #@overtime = @user.attendances.find_by(worked_on: params[:worked_on])
+    #debugger
+
+    respond_to do |format|
+      #if @attendance.save
+      if @overtime.update_attributes(overtime_params)
+        format.html
+        format.js
+      else
+        format.js{render :show}
+        
+      end
+    end
   end
   
   
@@ -45,4 +76,9 @@ class AttendancesController < ApplicationController
     def attendance_params
       params.permit(attendances:[:started_at, :finished_at, :note])[:attendances]
     end
+
+    def overtime_params
+      params.require(:attendance).permit(:worked_on, :scheduled_end_time, :next_day, :processing_content, :instructor_confirm_overtime)
+    end
+
 end
