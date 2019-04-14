@@ -4,6 +4,14 @@
 
     <%= hidden_field_tag :user_id, @user.id %>
     <%= hidden_field_tag :worked_on, @overtime.worked_on.to_s(:date) %>
+<div class="modal-header">
+
+<button type="button" class="close" data-dismiss="modal">
+<span aria-hidden="true">×</span></button>
+<h3 class="modal-title text-center">【残業申請】</h3>
+</div>
+
+<div class="modal-body">
 
 <table class="table-bordered table-striped table-condensed">
     <thead>
@@ -26,10 +34,14 @@
     <th><%= f.check_box :next_day, value: @overtime.next_day, class: "form-control" %></th>   
     <th><%= f.text_field :processing_content, value: @overtime.processing_content, class: "form-control" %></th>
     <th><%= f.collection_select :to_user_overtime, User.all, :id, :name, :prompt => "選択してください。" %></th>
+    
   <tr>
   <tbody>
   </table>
-    <%= f.submit "更新する", class: "btn btn-primary" %>
+  
+   <th>　　</th>
+    <%= f.submit "残業を申請する", class: "btn btn-primary" %>
+    </div>
   <% end %>
   </div>
 </div>
