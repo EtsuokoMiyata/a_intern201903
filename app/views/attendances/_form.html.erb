@@ -5,29 +5,30 @@
     <%= hidden_field_tag :user_id, @user.id %>
     <%= hidden_field_tag :worked_on, @overtime.worked_on.to_s(:date) %>
 
-
-    <%= f.label :日付 %>
+<table class="table-bordered table-striped table-condensed">
+    <thead>
+    <tr>
+    <th><%= f.label :日付 %></th>
+    <th><%= f.label :曜日 %></th>
+    <th><%= f.label :終了予定時間 %></th>
+    <th><%= f.label :翌日 %></th>
+    <th><%= f.label :業務処理内容 %></th>
+    <th><%= f.label :指示者確認㊞ %></th>
+    </tr>
+    </thead>
+    <tbody>
     <!-- :worked_onは、veiwに表示させずにparamsに含ませる -->
     <% f.text_field :worked_on, value: @overtime.worked_on, class: "form-control" %>
-
+    <tr>
     <th><%= @overtime.worked_on.to_s(:date) %></th>
-    <th><%= @youbi %></th>
-
-    <%= f.label :終了予定時間 %>
-    <%= f.time_field :scheduled_end_time,  :include_blank => true, class: "form-control" %>
-    
-
-    <%= f.label :翌日 %>
-    <%= f.check_box :next_day, value: @overtime.next_day, class: "form-control" %>
-
-    <%= f.label :業務処理内容 %>
-    <%= f.text_field :processing_content, value: @overtime.processing_content, class: "form-control" %>
-
-    <%= f.label :指示者確認㊞ %>
-    <%#= f.select :instructor_confirm_overtime, Attendance.instructor_confirm_overtimes.keys.to_a, { include_blank: true }, class: "form-control" %>
-
-    <%= f.collection_select :to_user_overtime, User.all, :id, :name, :prompt => "選択してください。" %>
-  
+    <th><%= @youbi %></th>    
+    <th><%= f.time_field :scheduled_end_time,  :include_blank => true, class: "form-control" %></th> 
+    <th><%= f.check_box :next_day, value: @overtime.next_day, class: "form-control" %></th>   
+    <th><%= f.text_field :processing_content, value: @overtime.processing_content, class: "form-control" %></th>
+    <th><%= f.collection_select :to_user_overtime, User.all, :id, :name, :prompt => "選択してください。" %></th>
+  <tr>
+  <tbody>
+  </table>
     <%= f.submit "更新する", class: "btn btn-primary" %>
   <% end %>
   </div>
