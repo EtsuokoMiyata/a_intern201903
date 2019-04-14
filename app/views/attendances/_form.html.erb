@@ -1,14 +1,15 @@
 <div class="modal-dialog">
   <div class="modal-content">
   <%= form_for update_overtime_path(@overtime), remote: true do |f| %>
-    <%= f.label :日付n %>
-    <%= f.date_field :worked_on, value: @overtime.worked_on, class: "form-control" %>
+    <%= f.label :日付 %>
+    <%= f.text_field :worked_on, value: @overtime.worked_on.to_s(:date), class: "form-control" %>
 
     <%= f.label :曜日 %>
     <%= f.text_field :youbi, value: @youbi, class: "form-control" %>
 
     <%= f.label :終了予定時間 %>
-    <%= f.datetime_field :scheduled_end_time, value: @overtime.scheduled_end_time, class: "form-control" %>
+    <%= f.time_select :scheduled_end_time,  :include_blank => true, class: "form-control" %>
+    
 
     <%= f.label :翌日 %>
     <%= f.check_box :next_day, value: @overtime.next_day, class: "form-control" %>
