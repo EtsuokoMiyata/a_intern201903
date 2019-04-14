@@ -41,6 +41,7 @@ class AttendancesController < ApplicationController
     @user=User.find(params[:id])
     @overtime = @user.attendances.find_by(worked_on: params[:worked_on])
     @youbi= params[:youbi]
+    @user_id=params[:id]
     #debugger
     respond_to do |format|
       format.html
@@ -62,6 +63,10 @@ class AttendancesController < ApplicationController
 
     respond_to do |format|
       #if @attendance.save
+      #debugger
+      @overtime=Attendance.find_by(params[:attendance][:user_id])
+      #debugger
+      #@overtime.update_attributes(overtime_params)
       if @overtime.update_attributes(overtime_params)
         format.html
         format.js

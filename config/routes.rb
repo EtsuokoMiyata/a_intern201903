@@ -15,7 +15,7 @@ Rails.application.routes.draw do
  #post '/users/:user_id/overtimes', to: 'overtimes#create', as: :overtime
  #残業申請モーダル用
  #patch '/users/:id/attendances/:date/overtime_edit', to: 'attendances#overtime_edit', as: :edit_overtimes
- post '/update_overtime', to: 'attendances#update_overtime'
+ post '/update_overtime/:user_id/update', to: 'attendances#update_overtime', as: :update_overtime
  get '/edit_overtime/:id', to: 'attendances#edit_overtime', as: :overtime
 
 
