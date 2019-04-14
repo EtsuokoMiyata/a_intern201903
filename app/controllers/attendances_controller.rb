@@ -53,20 +53,13 @@ class AttendancesController < ApplicationController
   
   
   def update_overtime
-    #@user=User.find(params[:id])
-    #@attendance = @user.attendances.find_by(worked_on:  params[:worked_on])
-   #@attendance=Attendance.find_by({user_id: params[:id], worked_on: params[:worked_on]}) 
-    #debugger
-    #@user=User.find(params[:id])
-    #@overtime = @user.attendances.find_by(worked_on: params[:worked_on])
-    #debugger
 
     respond_to do |format|
-      #if @attendance.save
+      #このアクション内のparams[:id]は　attendanceテーブルのidのこと
+      @user=User.find(params[:user_id])
+      @overtime = @user.attendances.find(params[:id])
+      
       #debugger
-      @overtime=Attendance.find_by(params[:attendance][:user_id])
-      #debugger
-      #@overtime.update_attributes(overtime_params)
       if @overtime.update_attributes(overtime_params)
         format.html
         format.js

@@ -1,20 +1,21 @@
 <div class="modal-dialog">
   <div class="modal-content">
   <%= form_for @overtime, url: update_overtime_path(@overtime),html:{method: "post"}, remote: true do |f| %>
-  <%= hidden_field params[:user_id1], user_id: @user.id %>
-  <%= hidden_field params[:worked_on1], worked_on1: @overtime.worked_on %>
-  <%#= hidden_field_tag :user_id, @user.id %>
-  <%#= hidden_field_tag :worked_on, @overtime.worked_on %>
+  <%#= hidden_field params[:user_id1], user_id: @user.id %>
+  <%#= hidden_field params[:worked_on1], worked_on1: @overtime.worked_on %>
+  <%= hidden_field_tag :user_id, @user.id %>
+  <%= hidden_field_tag :worked_on, @overtime.worked_on.to_s(:date) %>
 
 
     <%= f.label :日付 %>
-    <%= f.text_field :worked_on, value: @overtime.worked_on, class: "form-control" %>
+    <!-- :worked_onは、veiwに表示させずにparamsに含ませる -->
+    <% f.text_field :worked_on, value: @overtime.worked_on, class: "form-control" %>
 
-    
+    <th><%= @overtime.worked_on.to_s(:date) %></th>
     <th><%= @youbi %></th>
 
     <%= f.label :終了予定時間 %>
-    <%= f.time_select :scheduled_end_time,  :include_blank => true, class: "form-control" %>
+    <%= f.time_field :scheduled_end_time,  :include_blank => true, class: "form-control" %>
     
 
     <%= f.label :翌日 %>
